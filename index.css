@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.input {
+}
+
+.checked {
+}
+
+li:hover {
+}
+
+ul {
+  background: brown;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+}
+
+span {
+  float: right;
+}
