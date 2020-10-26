@@ -13,10 +13,6 @@
 li:hover {
 }
 
-ul {
-  background: brown;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -35,3 +31,9 @@ label {
 span {
   float: right;
 }
+
+li{
+  margin: 10px;
+  background-color: brown;
+}
+
