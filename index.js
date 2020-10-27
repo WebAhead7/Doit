@@ -16,27 +16,30 @@ function deleteNote(id) {
 }
 
 function checkNote(id) {
+  let result;
   notes.some((note) => {
     if (note.id === id) {
-      if (!note.checked){
-      note.checked = true;
-    }
-   else{
+      if (!note.checked) {
+        note.checked = true;
+        result = true;
+      } else {
         note.checked = false;
+        result = false;
       }
-       // return true;
+      return true;
     }
-       // return false;
   });
+  return result;
 }
-
 
 // DOM functions
 
 function makeNoteDOM(note) {
   return (
     `<label for="${note.id}">` +
-    `<input type="checkbox"  id="${note.id}" />` +
+    `<input type="checkbox" ` +
+    (note.checked ? `checked` : ``) +
+    ` id="${note.id}" />` +
     `${note.message}<span>delete</span></label>`
   );
 }
@@ -44,20 +47,26 @@ function makeNoteDOM(note) {
 function addNoteDOM(note) {
   const list = document.querySelector('ul');
   const listElem = document.createElement('li');
+
   listElem.innerHTML = makeNoteDOM(note);
+
+  // Add line to text if checked
+  if (note.checked) {
+    listElem.childNodes[0].style.textDecoration = 'line-through';
+  } else {
+    listElem.childNodes[0].style.textDecoration = 'none';
+  }
 
   // Add event listener to delete span
   listElem.childNodes[0].childNodes[2].addEventListener(
     'click',
     spanEventListener
   );
-  
 
   // Add event listener checkbox
   listElem.childNodes[0].childNodes[0].addEventListener(
-    'click', 
+    'click',
     checkEventListener
-    
   );
 
   // Add note to the list
@@ -71,32 +80,24 @@ document.querySelector('.addButton').addEventListener('click', () => {
   addNoteDOM(note);
 });
 
-// eventlistner function for delete button 
+// eventlistner function for delete button
 
 const spanEventListener = (e) => {
   const listElem = e.path[2];
   const id = Number(listElem.childNodes[0].childNodes[0].id);
   deleteNote(id);
-  listElem.remove();      
+  listElem.remove();
 };
 
-// eventlistner function for check button 
+// eventlistner function for check button
 
-const checkEventListener = (e) => { 
+const checkEventListener = (e) => {
   const listElem = e.path[2];
   const id = Number(listElem.childNodes[0].childNodes[0].id);
-  checkNote(id);
-  const wantedNote = notes.filter(a => a.id == id);
-  if (wantedNote[0].checked) {
-  listElem.childNodes[0].style.textDecoration = 'line-through' ;
-  }
-  else{
+
+  if (checkNote(id)) {
+    listElem.childNodes[0].style.textDecoration = 'line-through';
+  } else {
     listElem.childNodes[0].style.textDecoration = 'none';
-
-
   }
 };
-
-
-
-
