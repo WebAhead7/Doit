@@ -1,55 +1,59 @@
-test('makeNote() function', (t) => {
-  const { equal } = t;
-  const result = makeNote('Do homework!');
-  equal(typeof result, 'object');
-  equal(result.message, 'Do homework!');
-});
+const RUN_TESTS = true;
 
-test('addNote() function', (t) => {
-  const { equal } = t;
-  const note = makeNote('Do homework!');
-  const result = addNote(note);
-  equal(result, notes.length);
-  equal(notes[notes.length - 1].message, 'Do homework!');
-  deleteNote(note);
-});
+if (RUN_TESTS) {
+  test('makeNote() function', (t) => {
+    const { equal } = t;
+    const result = makeNote('Do homework!');
+    equal(typeof result, 'object');
+    equal(result.message, 'Do homework!');
+  });
 
-test('deleteNote() function', (t) => {
-  const { equal } = t;
-  const note = makeNote('Do homework!');
-  const saveLength = notes.length;
-  addNote(note);
-  deleteNote(note.id);
-  equal(saveLength, notes.length);
-});
+  test('addNote() function', (t) => {
+    const { equal } = t;
+    const note = makeNote('Do homework!');
+    const result = addNote(note);
+    equal(result, notes.length);
+    equal(notes[notes.length - 1].message, 'Do homework!');
+    deleteNote(note);
+  });
 
-test('checkNote() function', (t) => {
-  const { equal } = t;
-  const note = makeNote('Do homework!');
-  addNote(note);
+  test('deleteNote() function', (t) => {
+    const { equal } = t;
+    const note = makeNote('Do homework!');
+    const saveLength = notes.length;
+    addNote(note);
+    deleteNote(note.id);
+    equal(saveLength, notes.length);
+  });
 
-  equal(note.checked, false);
-  checkNote(note.id);
-  equal(note.checked, true);
-  deleteNote(note.id);
-});
+  test('checkNote() function', (t) => {
+    const { equal } = t;
+    const note = makeNote('Do homework!');
+    addNote(note);
 
-// DOM functions test
+    equal(note.checked, false);
+    checkNote(note.id);
+    equal(note.checked, true);
+    deleteNote(note.id);
+  });
 
-test('makeNoteDOM() function', (t) => {
-  const { equal } = t;
-  const note = makeNote('Do homework!');
+  // DOM functions test
 
-  const saveCounter = counter;
-  const result = makeNoteDOM(note);
-  const expected =
-    `<label for="${note.id}">` +
-    `<input type="checkbox" ` +
-    ` id="${saveCounter}" />` +
-    `Do homework!<span>delete</span></label>`;
-  equal(result, expected);
-});
+  test('makeNoteDOM() function', (t) => {
+    const { equal } = t;
+    const note = makeNote('Do homework!');
 
-test('addNoteDOM() function', (t) => {
-  const { equal } = t;
-});
+    const saveCounter = counter;
+    const result = makeNoteDOM(note);
+    const expected =
+      `<label for="${note.id}">` +
+      `<input type="checkbox" ` +
+      ` id="${saveCounter}" />` +
+      `Do homework!<span>delete</span></label>`;
+    equal(result, expected);
+  });
+
+  test('addNoteDOM() function', (t) => {
+    const { equal } = t;
+  });
+}
