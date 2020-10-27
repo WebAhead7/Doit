@@ -53,7 +53,7 @@ ul li {
   padding: 20px;
 }
 
-ul .delete {
+li span  {
   background: var(--blue);
   margin-top: -24px;
   padding: 5px;
