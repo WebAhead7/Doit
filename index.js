@@ -8,7 +8,7 @@ function makeNote(message) {
 }
 
 function addNote(note) {
-  notes.push(note);
+  return notes.push(note);
 }
 
 function deleteNote(id) {
