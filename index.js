@@ -40,32 +40,32 @@ function makeNoteDOM(note) {
     `<input type="checkbox" ` +
     (note.checked ? `checked` : ``) +
     ` id="${note.id}" />` +
-    `${note.message}<span>delete</span></label>`
+    `<p>${note.message}</p><span>delete</span></label>`
   );
 }
 
 function addNoteDOM(note) {
-  const list = document.querySelector('ul');
-  const listElem = document.createElement('li');
+  const list = document.querySelector("ul");
+  const listElem = document.createElement("li");
 
   listElem.innerHTML = makeNoteDOM(note);
 
   // Add line to text if checked
   if (note.checked) {
-    listElem.childNodes[0].style.textDecoration = 'line-through';
+    listElem.childNodes[0].childNodes[1].classList.add("checked");
   } else {
-    listElem.childNodes[0].style.textDecoration = 'none';
+    listElem.childNodes[0].childNodes[1].classList.remove("checked");
   }
 
   // Add event listener to delete span
   listElem.childNodes[0].childNodes[2].addEventListener(
-    'click',
+    "click",
     spanEventListener
   );
 
   // Add event listener checkbox
   listElem.childNodes[0].childNodes[0].addEventListener(
-    'click',
+    "click",
     checkEventListener
   );
 
@@ -73,8 +73,8 @@ function addNoteDOM(note) {
   list.appendChild(listElem);
 }
 
-document.querySelector('.addButton').addEventListener('click', () => {
-  const input = document.querySelector('.input').value;
+document.querySelector(".addButton").addEventListener("click", () => {
+  const input = document.querySelector(".input").value;
   const note = makeNote(input);
   addNote(note);
   addNoteDOM(note);
@@ -96,8 +96,8 @@ const checkEventListener = (e) => {
   const id = Number(listElem.childNodes[0].childNodes[0].id);
 
   if (checkNote(id)) {
-    listElem.childNodes[0].style.textDecoration = 'line-through';
+    listElem.childNodes[0].childNodes[1].classList.add("checked");
   } else {
-    listElem.childNodes[0].style.textDecoration = 'none';
+    listElem.childNodes[0].childNodes[1].classList.remove("checked");
   }
 };

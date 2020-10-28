@@ -53,12 +53,23 @@ ul li {
   padding: 20px;
 }
 
-li span  {
+li input {
+  position: fixed;
+}
+
+li span {
   background: var(--blue);
-  margin-top: -24px;
+  margin-top: -2px;
   padding: 5px;
   border-radius: 3px;
   color: white;
+}
+
+li p {
+  display: inline-block;
+  margin: 2px 25px;
+  overflow-wrap: break-word;
+  max-width: 170px;
 }
 
 .container {
@@ -75,6 +86,7 @@ span {
 }
 
 .checked {
+  text-decoration: line-through;
 }
 
 li:hover {
