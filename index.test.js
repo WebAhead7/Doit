@@ -1,4 +1,4 @@
-const RUN_TESTS = true;
+const RUN_TESTS = false;
 
 if (RUN_TESTS) {
   test('makeNote() function', (t) => {

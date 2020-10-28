@@ -58,6 +58,7 @@ function addNoteDOM(note) {
   }
 
   // Add event listener to delete span
+
   listElem.childNodes[0].childNodes[2].addEventListener(
     'click',
     spanEventListener
@@ -75,9 +76,12 @@ function addNoteDOM(note) {
 
 document.querySelector('.addButton').addEventListener('click', () => {
   const input = document.querySelector('.input').value;
-  const note = makeNote(input);
-  addNote(note);
-  addNoteDOM(note);
+  if (input) {
+    const note = makeNote(input);
+    addNote(note);
+    addNoteDOM(note);
+    document.querySelector('.input').value = '';
+  }
 });
 
 // eventlistner function for delete button
